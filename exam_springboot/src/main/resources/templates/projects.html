@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Projects</title>
+</head>
+<body>
+<h1>Projects</h1>
+<form th:action="@{/projects}" method="post">
+    <input type="text" name="name" placeholder="Project Name"/>
+    <input type="text" name="client" placeholder="Client"/>
+    <input type="text" name="percentage" placeholder="Percentage"/>
+    <button type="submit">Save</button>
+</form>
+<form th:action="@{/projects/assign}" method="post">
+    <select name="projectId">
+        <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.name}"></option>
+    </select>
+    <select name="employeeId">
+        <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+    </select>
+    <button type="submit">Assign</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Client</th>
+        <th>Percentage</th>
+    </tr>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.id}"></td>
+        <td th:text="${project.name}"></td>
+        <td th:text="${project.client}"></td>
+        <td th:text="${project.percentage}"></td>
+    </tr>
+</table>
+</body>
+</html>
